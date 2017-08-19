@@ -1,0 +1,26 @@
+{
+  "name": "mongodb-test-helper",
+  "version": "1.0.0",
+  "description": "mongodb test helper",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "mongodb",
+    "test",
+    "helper"
+  ],
+  "author": "Luiz Zamboni",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "co": "^4.6.0",
+    "mongodb": "^2.2.31"
+  },
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "mocha-co": "^1.17.2",
+    "mongoose": "^4.11.7"
+  }
+}
