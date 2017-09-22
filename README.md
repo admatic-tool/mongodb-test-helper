@@ -27,7 +27,9 @@ co(function*() {
 
   // insert one item in collection 
   yield helper.insert("users", { name: "luiz" })
-
+  //{ _id: 59c470298b1c642db095c462", name: "luiz" } 
+  
+  
   // insert multiple itens in collection
   yield helper.insert("users", [
     { name: "luiz" },
@@ -35,8 +37,23 @@ co(function*() {
     { name: "margareth" },
   ])
 
+  /*
+    [
+      { _id: 59c470298b1c642db095c462", name: "luiz" },
+      { _id: "59c470548b1c642db095c463" , name: "ludmila" },
+      { _id: "59c470558b1c642db095c464" , name: "margareth" }
+    ]
+  */
+
   // provide your own _id
   yield helper.insert("users", { _id: 123, name: "luiz" })
+
+  /*
+    [
+      { _id: '123', name: "luiz" },
+    ]
+  */
+
 
   // retreine
   yield helper.find("users", { name: /l/ })

@@ -12,60 +12,53 @@ describe("MongodbTestHelper", () => {
 
   const helper = Factory(config)
   
-  before(function*() {
-    yield helper.clearDB()
-  })
 
-  describe("#insertInCollection", () => {
+  describe("#insert", () => {
     
     context("without _id", () => {
-      let users
+
+      let user
 
       before(function*() {
-        yield helper.insert("users", { name: "luiz" })
-
-        users = yield helper.find("users", { name: "luiz" })
+        yield helper.clearDB()        
+        user = yield helper.insert("users", { name: "luiz" })
       })
 
-      it("shoulds user has inserted", () => {
-        expect(users).to.be.not.empty
-      })
-
-      it("shoulds one user has inserted", () => {
-        expect(users).to.be.lengthOf(1)
-      })
 
       it("shoulds _id has a objectId", () => {
-        users.forEach(user => {
-          expect(user._id).to.match(/[a-z|0-9]{24}/)
-        })
+        expect(user._id).to.match(/[a-z|0-9]{24}/)
       })
 
     })
 
     context("with _id provided", () => {
-      let accounts
+      let account
 
       before(function*() {
-        yield helper.insert("accounts", { _id: 123, name: "conta do luiz" })
-
-        accounts = yield helper.find("accounts", { name: /luiz/ })
-      })
-
-      it("shoulds accounts has inserted", () => {
-        expect(accounts).to.be.not.empty
-      })
-
-      it("shoulds one accounts has inserted", () => {
-        expect(accounts).to.be.lengthOf(1)
+        yield helper.clearDB()                
+        account = yield helper.insert("accounts", { _id: 123, name: "conta do luiz" })
       })
 
       it("shoulds _id has the _id provided", () => {
-        accounts.forEach(account => {
-          expect(account._id).to.be.eqls(123)
-        })
+        expect(account._id).to.be.eqls(123)
       })
+    })
+  })
 
+  describe("#removeAll", () => {
+    let account
+    
+    before(function*() {
+      yield helper.clearDB()
+      account = yield helper.insert("accounts", { _id: 24, name: "xxx" })
+      expect(account).to.be.eqls({ _id: 24, name: "xxx" })
+
+      const res = yield helper.removeAll("accounts")
+      accounts =  yield helper.find("accounts")
+    })
+
+    it("shoulds remove docs from collection", () => {
+      expect(accounts).to.be.lengthOf(0)        
     })
   })
 })

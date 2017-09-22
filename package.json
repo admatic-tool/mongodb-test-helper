@@ -1,6 +1,6 @@
 {
   "name": "mongodb-test-helper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "mongodb test helper",
   "main": "index.js",
   "scripts": {
