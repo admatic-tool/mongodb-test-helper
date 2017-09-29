@@ -35,7 +35,7 @@ describe("MongodbTestHelper", () => {
       let account
 
       before(function*() {
-        yield helper.clearDB()                
+        yield helper.clearDB()
         account = yield helper.insert("accounts", { _id: 123, name: "conta do luiz" })
       })
 
@@ -58,7 +58,7 @@ describe("MongodbTestHelper", () => {
     })
 
     it("shoulds remove docs from collection", () => {
-      expect(accounts).to.be.lengthOf(0)        
+      expect(accounts).to.be.lengthOf(0)
     })
   })
 })

@@ -4,7 +4,7 @@ const co = require("co")
 const mongodb = require("mongodb")
 const Promise = require("bluebird")
 
-const { ObjectID } = mongodb
+const { ObjectID, Logger } = mongodb
 const MongoClient = Promise.promisifyAll(mongodb.MongoClient)
 
 module.exports = (config) => {
@@ -14,7 +14,7 @@ module.exports = (config) => {
 
     _transformInsert: res => {
       return res.ops.map(o => { 
-        debugger
+        
         if(!o._id.split && isNaN(o._id))
         o._id = o._id.toString()
         return o  
